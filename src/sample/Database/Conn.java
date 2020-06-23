@@ -11,7 +11,7 @@ import java.sql.SQLException;
  */
 public class Conn {
     private static Connection connection = null;
-    private static String dbPath = "jdbc:mariadb://118.178.89.205:3306/user?useSSL=true&characterEncoding=utf-8&user=webproject&password=123456";
+    private static String dbPath = "jdbc:mariadb://118.178.89.205:3306/waimai?characterEncoding=utf-8&user=webproject&password=123456";
 
     private Conn() {
 
@@ -20,12 +20,15 @@ public class Conn {
     public static Connection getConnection() {
         if (connection == null) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                connection = DriverManager.getConnection(dbPath);
+                Class.forName("org.mariadb.jdbc.Driver");
+                //connection = DriverManager.getConnection(dbPath);
+                connection = DriverManager.getConnection("jdbc:mariadb://118.178.89.205:3306/waimai", "webproject", "123456");
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         }
         return connection;
     }
+
+
 }
