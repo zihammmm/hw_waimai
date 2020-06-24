@@ -4,7 +4,8 @@ package sample.Database;
 import sample.Item.CartItem;
 import sample.Item.Item;
 import sample.Item.ItemList;
-import sample.User.User;
+import sample.Item.Order;
+import sample.User.UserType;
 
 import java.sql.*;
 import java.util.Collections;
@@ -42,19 +43,31 @@ public class Conn {
         return connection;
     }
 
-    public static boolean checkUser(String name, String pw) {
+    /**
+     * 登陆
+     * @param name
+     * @param pw
+     * @return 用户类型
+     */
+    public static String checkUser(String name, String pw) {
         String sql = "SELECT * FROM user WHERE name = ? AND pw = ?";
         try(PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setString(1, name);
             pstmt.setString(2, pw);
             ResultSet resultSet = pstmt.executeQuery();
-            return resultSet.next();
+            resultSet.next();
+            return resultSet.getString("user_type");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        return null;
     }
 
+    /**
+     * 拉取购物车
+     * @param userID
+     * @return
+     */
     public static List<CartItem> getCart(int userID) {
         String sql = "SELECT item_id, num FROM cart WHERE user_id = ?";
         try(PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
@@ -73,5 +86,25 @@ public class Conn {
         }
     }
 
+    /**
+     * 添加商品后将商品插入到数据库中
+     * @param item
+     * @return
+     */
+    public static int insertItemIntoDB(Item item) {
+        //TODO: 插入到数据库中
+        return 0;
+    }
+
+    /**
+     * 拉取订单信息
+     * @param userID
+     * @return
+     */
+    public static List<Order> getOrderList(int userID) {
+        List<Order> orderList = new LinkedList<>();
+
+        return orderList;
+    }
 
 }

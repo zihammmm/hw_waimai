@@ -1,5 +1,7 @@
 package sample.Item;
 
+import sample.Output.OutputUtils;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class ItemList {
     /**
      * 获取商品列表
      */
-    public ItemList() {
+    public static void getItemList() {
 
     }
 
@@ -23,6 +25,13 @@ public class ItemList {
             }
         }
         return null;
+    }
+
+    public static void printItemList() {
+        OutputUtils.outputln("序号\t商品ID\t商品名\t价格\t描述");
+        for (int i = 0; i < list.size(); i++) {
+            OutputUtils.outputln(i + "\t" + list.get(i).toString());
+        }
     }
 
 }

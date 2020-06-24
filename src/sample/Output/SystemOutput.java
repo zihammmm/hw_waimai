@@ -2,6 +2,8 @@ package sample.Output;
 
 import sample.Input.SystemInput;
 
+import java.io.IOException;
+
 public class SystemOutput implements Output{
     private static SystemOutput systemOutput = null;
     private SystemOutput() {
@@ -28,5 +30,16 @@ public class SystemOutput implements Output{
     @Override
     public void output(String str) {
         System.out.print(str);
+    }
+
+    @Override
+    public void clear() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

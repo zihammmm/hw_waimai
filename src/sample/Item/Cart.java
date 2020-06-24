@@ -1,5 +1,7 @@
 package sample.Item;
 
+import sample.Output.OutputUtils;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,12 +32,11 @@ public class Cart {
         itemList.add(new CartItem(item, num));
     }
 
-    public boolean removeItem(Item item, int num) {
-        int index = getItemIndex(item);
-        if (index == -1) {
+    public boolean removeItem(int index, int num) {
+        if (index < 0 || index >= itemList.size()) {
             return false;
         }else {
-            int n = getItemNum(item);
+            int n = getItemNum(index);
             if (n == -1) {
                 return false;
             }else {
@@ -53,14 +54,21 @@ public class Cart {
      * 打印购物车
      */
     public void printItems() {
-
+        OutputUtils.outputln("序号\t商品ID\t商品名\t单价\t数量");
+        for (int i = 0; i < itemList.size(); i++) {
+            OutputUtils.outputln(i + "\t" + itemList.get(i).toString());
+        }
     }
 
     /**
      * 结算购物车
      */
-    public void settle() {
-
+    public double settle() {
+        double sum = 0;
+        for (CartItem cartItem : itemList) {
+            sum += (cartItem.getItem().getPrice() * cartItem.getNum());
+        }
+        return sum;
     }
 
     private boolean setItemNum(CartItem cartItem, int num) {
@@ -71,13 +79,8 @@ public class Cart {
         return true;
     }
 
-    private int getItemNum(Item item) {
-        int index = getItemIndex(item);
-        if (index == -1) {
-            return -1;
-        }else {
-            return itemList.get(index).getNum();
-        }
+    private int getItemNum(int index) {
+        return itemList.get(index).getNum();
     }
 
     private int getItemIndex(Item item) {

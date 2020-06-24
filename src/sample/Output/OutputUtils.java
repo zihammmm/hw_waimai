@@ -10,4 +10,8 @@ public class OutputUtils {
     public static void output(String str) {
         output.output(str);
     }
+
+    public static void clear() {
+        output.clear();
+    }
 }

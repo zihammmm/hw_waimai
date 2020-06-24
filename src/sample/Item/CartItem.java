@@ -24,4 +24,9 @@ public class CartItem {
     public Item getItem() {
         return item;
     }
+
+    @Override
+    public String toString() {
+        return item.toString() + "\t" + num;
+    }
 }

@@ -3,52 +3,62 @@ package sample;
 import sample.Database.Conn;
 import sample.Input.InputUtils;
 import sample.Item.Item;
-import sample.Output.Output;
+import sample.Item.ItemList;
 import sample.Output.OutputUtils;
 import sample.User.User;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TakeOutSystem {
     private static User user = null;
-    private static List<Item> items = new ArrayList<>();
     private Connection connection = null;
 
     public TakeOutSystem(){
-        OutputUtils.outputln("æ­£åœ¨åˆå§‹åŒ–ã€‚ã€‚ã€‚è¯·ç¨å");
-        connection = Conn.getConnection();
+        OutputUtils.outputln("ÕıÔÚ³õÊ¼»¯¡£¡£¡£ÇëÉÔºó");
+        //connection = Conn.getConnection();
 
         welcome();
     }
 
-    private void welcome() {
-        OutputUtils.outputln("æ¬¢è¿ä½¿ç”¨æœ¬è½¯ä»¶ï¼");
-        OutputUtils.outputln("è¯·è¾“å…¥æ‚¨æƒ³è¦æ‰§è¡Œçš„æ“ä½œçš„é€‰é¡¹ï¼š");
-        OutputUtils.outputln("1:ç™»é™†");
-        OutputUtils.outputln("2:é€€å‡º");
-    }
+    public void welcome() {
+        OutputUtils.outputln("»¶Ó­Ê¹ÓÃ±¾Èí¼ş£¡");
+        OutputUtils.outputln("ÇëÊäÈëÄúÏëÒªÖ´ĞĞµÄ²Ù×÷µÄÑ¡Ïî£º");
+        OutputUtils.outputln("1:µÇÂ½");
+        OutputUtils.outputln("2:ÍË³ö");
+        int x = InputUtils.inputInt();
+        if (x == 1) {
+            String res = login();
+            if (res == null) {
+                OutputUtils.outputln("µÇÂ½Ê§°Ü");
+            }else {
+                //TODO:ÈıÖÖÀàĞÍ
+            }
+        }else if (x == 2){
 
-    public static List<Item> getItemsInstance() {
-        return items;
+        }else {
+            Logger.getAnonymousLogger().log(Level.WARNING, "ÎŞ´ËÑ¡Ïî");
+        }
     }
 
     /**
-     * ç™»é™†
+     * µÇÂ½
      * @return
      */
-    public boolean login(){
-        OutputUtils.outputln("ç™»é™†");
-        OutputUtils.output("è¯·è¾“å…¥è´¦å·ï¼š");
+    public String login(){
+        OutputUtils.outputln("µÇÂ½");
+        OutputUtils.output("ÇëÊäÈëÕËºÅ£º");
         String acc = InputUtils.inputString();
-        OutputUtils.output("è¯·è¾“å…¥å¯†ç ï¼š");
+        OutputUtils.output("ÇëÊäÈëÃÜÂë£º");
         String pwd = InputUtils.inputString();
-        return true;
+        return Conn.checkUser(acc, pwd);
     }
 
     /**
-     * ç™»å‡º
+     * µÇ³ö
      * @return
      */
     public boolean logout(){

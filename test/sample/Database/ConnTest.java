@@ -51,8 +51,7 @@ public void testGetConnection() throws Exception {
 @Test
 public void testCheckUser() throws Exception { 
 //TODO: Test goes here...
-    assertFalse(Conn.checkUser("test1", "234"));
-    assertTrue(Conn.checkUser("test", "123"));
+
 } 
 
 

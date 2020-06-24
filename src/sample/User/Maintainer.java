@@ -1,8 +1,12 @@
 package sample.User;
 
-public class Maintainer extends User{
+public class Maintainer implements User{
+    private int id;
+    private String name;
+
     Maintainer(int id, String name) {
-        super(id, name);
+        this.id = id;
+        this.name = name;
     }
 
     public double getSaleOneWeek() {
@@ -11,5 +15,15 @@ public class Maintainer extends User{
 
     public double getSaleOneMonth() {
         return 0;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
