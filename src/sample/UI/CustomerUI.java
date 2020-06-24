@@ -3,13 +3,12 @@ package sample.UI;
 import sample.Input.InputUtils;
 import sample.Item.ItemList;
 import sample.Output.OutputUtils;
-import sample.TakeOutSystem;
 import sample.User.Customer;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CustomerUI {
+public class CustomerUI{
     private Customer customer;
     private static final int CHECK_ITEM_LIST = 1;
     private static final int CHECK_MY_ORDER = 2;

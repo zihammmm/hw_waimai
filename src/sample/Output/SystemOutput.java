@@ -1,7 +1,5 @@
 package sample.Output;
 
-import sample.Input.SystemInput;
-
 import java.io.IOException;
 
 public class SystemOutput implements Output{

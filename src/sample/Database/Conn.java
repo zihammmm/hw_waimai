@@ -107,4 +107,10 @@ public class Conn {
         return orderList;
     }
 
+    public static List<Item> getItemList(int userID) {
+        List<Item> itemList = new LinkedList<>();
+
+        return itemList;
+    }
+
 }

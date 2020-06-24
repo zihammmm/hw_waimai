@@ -20,6 +20,14 @@ public class MerchantUI {
     }
 
     public void mainUI() {
+        do {
+            OutputUtils.clear();
+            options();
+            UIUtils.waitOneSecond();
+        }while (chooseOptions() != LOGOUT);
+    }
+
+    public void options() {
         OutputUtils.outputln("欢迎商家：" + merchant.getName());
         OutputUtils.outputln("请选择操作：");
         OutputUtils.outputln("请选择操作：");
@@ -46,7 +54,7 @@ public class MerchantUI {
                 break;
             default:
                 Logger.getAnonymousLogger().log(Level.WARNING, "无此选项");
-                return -1;
+                return LOGOUT;
         }
         return x;
     }
@@ -60,6 +68,7 @@ public class MerchantUI {
     public void checkMyOrder() {
         OutputUtils.clear();
         OutputUtils.outputln("我收到的订单如下：");
+        merchant.printOrders();
     }
 
     public void publishItem() {
@@ -79,11 +88,7 @@ public class MerchantUI {
     public void logout() {
         OutputUtils.clear();
         OutputUtils.outputln("退出成功");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        UIUtils.waitOneSecond();
     }
 
 }
